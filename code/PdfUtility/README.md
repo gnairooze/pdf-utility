@@ -1,10 +1,10 @@
 # PDF Utility
 
-A simple .NET 8 console application that performs various PDF operations.
+A simple .NET 9 console application that performs various PDF operations.
 
 ## Requirements
 
-- .NET 8 SDK
+- .NET 9 SDK
 - Windows, Linux, or macOS
 
 ## Usage
