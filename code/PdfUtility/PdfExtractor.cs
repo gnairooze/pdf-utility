@@ -41,13 +41,11 @@ namespace PdfUtility
                 // Iterate the references to external objects.
                 foreach (var item in items)
                 {
-                    var reference = item as PdfReference;
-                    if (reference == null)
+                    if (item is not PdfReference reference)
                         continue;
 
-                    var xObject = reference.Value as PdfDictionary;
                     // Is external object an image?
-                    if (xObject != null && xObject.Elements.GetString("/Subtype") == "/Image")
+                    if (reference.Value is PdfDictionary xObject && xObject.Elements.GetString("/Subtype") == "/Image")
                     {
                         ExportImage(xObject, ref imageCount, outputDirectory);
                     }
@@ -72,8 +70,7 @@ namespace PdfUtility
         {
             var filter = image.Elements.GetValue("/Filter");
             // Do we have a filter array?
-            var array = filter as PdfArray;
-            if (array != null)
+            if (filter is PdfArray array)
             {
                 // PDF files sometimes contain "zipped" JPEG images.
                 if (array.Elements.GetName(0) == "/DCTDecode")
@@ -95,12 +92,8 @@ namespace PdfUtility
                     case "/DCTDecode":
                         ExportJpegImage(image, ref count, outputDirectory);
                         break;
-
-                    case "/FlateDecode":
-                        ExportAsPngImage(image, ref count);
-                        break;
-
-                    // TODO Deal with other encodings like "/CCITTFaxDecode"
+                    
+                    // TODO Deal with other encodings like "/FlateDecode" and "/CCITTFaxDecode"
                 }
             }
         }
@@ -114,24 +107,6 @@ namespace PdfUtility
             byte[] stream = image.Stream.Value;
             string filename = Path.Combine(outputDirectory, $"Image{count++}.jpeg");
             File.WriteAllBytes(filename, stream);
-        }
-
-        /// <summary>
-        /// Exports image in PNG format.
-        /// </summary>
-        private static void ExportAsPngImage(PdfDictionary image, ref int count)
-        {
-            var width = image.Elements.GetInteger(PdfImage.Keys.Width);
-            var height = image.Elements.GetInteger(PdfImage.Keys.Height);
-            var bitsPerComponent = image.Elements.GetInteger(PdfImage.Keys.BitsPerComponent);
-
-            // TODO: You can put the code here that converts from PDF internal image format to a Windows bitmap.
-            // and use GDI+ to save it in PNG format.
-            // It is the work of a day or two for the most important formats. Take a look at the file
-            // PdfSharp.Pdf.Advanced/PdfImage.cs to see how we create the PDF image formats.
-            // We don't need that feature at the moment and therefore will not implement it.
-            // If you write the code for exporting images I would be pleased to publish it in a future release
-            // of PDFsharp.
         }
     }
 } 
