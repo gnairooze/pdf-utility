@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfUtility", "..\..\..\draft\pdf-utility\PdfUtility\PdfUtility.csproj", "{2CF526A1-63F7-13E8-6792-C55A6BD79F87}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfUtility", "PdfUtility\PdfUtility.csproj", "{1A30B3A4-964C-D147-C640-44EB0EA9B0C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2CF526A1-63F7-13E8-6792-C55A6BD79F87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2CF526A1-63F7-13E8-6792-C55A6BD79F87}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2CF526A1-63F7-13E8-6792-C55A6BD79F87}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2CF526A1-63F7-13E8-6792-C55A6BD79F87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A30B3A4-964C-D147-C640-44EB0EA9B0C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A30B3A4-964C-D147-C640-44EB0EA9B0C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A30B3A4-964C-D147-C640-44EB0EA9B0C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A30B3A4-964C-D147-C640-44EB0EA9B0C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
