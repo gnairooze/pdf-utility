@@ -16,14 +16,14 @@ dotnet build
 
 2. Run the application:
 ```bash
-dotnet run <operation> <input_directory> <output_pdf_path>
+dotnet run <operation> <input_path> <output_path>
 ```
 
 ### Parameters
 
-- `operation`: The operation to perform (currently supported: "merge")
-- `input_directory`: Path to the directory containing input files
-- `output_pdf_path`: Path where the output PDF file will be saved
+- `operation`: The operation to perform (supported: "merge" or "extract")
+- `input_path`: Path to the input directory (for merge) or PDF file (for extract)
+- `output_path`: Path where the output PDF file (for merge) or extracted images (for extract) will be saved
 
 ### Available Operations
 
@@ -31,6 +31,12 @@ dotnet run <operation> <input_directory> <output_pdf_path>
 Merges JPG images into a single PDF file.
 ```bash
 dotnet run merge ./images ./output.pdf
+```
+
+#### Extract
+Extracts images from a PDF file.
+```bash
+dotnet run extract ./input.pdf ./extracted_images
 ```
 
 ## Features
@@ -42,8 +48,22 @@ dotnet run merge ./images ./output.pdf
 - Supports error handling for individual images
 - Orders images alphabetically by filename
 
+### Extract Operation
+- Extracts images embedded in a PDF file
+- Currently supports JPEG images
+- Creates a new directory for extracted images if it doesn't exist
+- Images are saved with sequential numbering (Image0.jpeg, Image1.jpeg, etc.)
+- Provides feedback on the number of images extracted
+
 ## Notes
 
-- Only JPG files are supported for the merge operation
+- For merge operation: Only JPG files are supported
+- For extract operation: Currently supports JPEG images only
 - The application will skip any images that cannot be processed
-- The output PDF will be created even if some images fail to process 
+- The output will be created even if some images fail to process
+- For extract operation, the output directory will be created if it doesn't exist
+
+## Dependencies
+
+- PdfSharp (Version 6.1.1) - Used for PDF manipulation and image extraction
+ 
